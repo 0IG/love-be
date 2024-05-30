@@ -11,11 +11,18 @@ CREATE TABLE users (
     password TEXT NOT NULL,
     email TEXT UNIQUE NOT NULL,
     profileImg TEXT,
-    address TEXT,
+    address TEXT NOT NULL,
     zipcode INT,
     rating INT,
     customerType TEXT NOT NULL,
     admin BOOLEAN DEFAULT false,
+    region TEXT NOT NULL,
+    province TEXT NOT NULL,
+    city TEXT NOT NULL,
+    town TEXT NOT NULL,
+    spots INT[],
+    dob TEXT NOT NULL,
+    firebase_id INT,
     joinedDate TIMESTAMP DEFAULT NOW()
 );
 
@@ -23,6 +30,29 @@ DROP TABLE IF EXISTS photos;
 CREATE TABLE photos (
     id SERIAL UNIQUE NOT NULL PRIMARY KEY,
     url TEXT NOT NULL,
+    user_id INT NOT NULL
+);
+
+DROP TABLE IF EXISTS relationships;
+CREATE TABLE relationships (
+    id SERIAL UNIQUE NOT NULL PRIMARY KEY,
     user_id INT NOT NULL,
-    FOREIGN KEY (user_id) REFERENCES users(id)
+    partner_id INT NOT NULL,
+    status TEXT NOT NULL
+);
+
+DROP TABLE IF EXISTS locations;
+CREATE TABLE locations (
+    id SERIAL UNIQUE NOT NULL PRIMARY KEY,
+    lat TEXT NOT NULL,
+    lng TEXT NOT NULL
+);
+
+DROP TABLE IF EXISTS board;
+CREATE TABLE board (
+    id SERIAL UNIQUE NOT NULL PRIMARY KEY,
+    owner_id INT NOT NULL,
+    constributors_id INT[],
+    title TEXT NOT NULL,
+    description TEXT NOT NULL
 );

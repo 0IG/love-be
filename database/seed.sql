@@ -1,11 +1,29 @@
 \c love;
 
-INSERT INTO users (username, password, email, profileImg, address, zipcode, rating, customerType, admin, joinedDate) VALUES
-('test1', 'test1', 'test1@test.com', 'https://i.imgur.com/8puTSd9.png', '1 test rd', 11111, 3, 'member', false, NOW()),
-('test2', 'test2', 'test2@test.com', 'https://i.imgur.com/MmLQSDV.png', '2 test rd', 22222, 1,'member', false, NOW()),
-('test3', 'test3', 'test3@test.com', 'https://i.imgur.com/ZlrcYvd.png', '3 test rd', 33333, 5, 'member', true, NOW());
+INSERT INTO users (username, password, email, profileImg, address, zipcode, rating, customerType, admin, region, province, city, town, spots,dob,firebase_id, joinedDate) VALUES
+('test1', 'testA', 'test1@test.com', 'https://i.imgur.com/8puTSd9.png', '1 test rd', 11111, 3, 'member', false, 'NA', 'CA', 'LA', 'Compton','{1}','01/01/01' ,2,NOW()),
+('test2', 'testB', 'test2@test.com', 'https://i.imgur.com/MmLQSDV.png', '2 test rd', 22222, 1,'member', false,'NA', 'CA', 'LA', 'Compton','{1}','01/01/01' ,2, NOW()),
+('test3', 'testC', 'test3@test.com', 'https://i.imgur.com/ZlrcYvd.png', '3 test rd', 33333, 5, 'member', true,'NA', 'CA', 'LA', 'Compton','{1}' ,'01/01/01',2, NOW()),
+('test4', 'testD', 'test4@test.com', 'https://i.imgur.com/8puTSd9.png', '1 test rd', 11111, 3, 'member', false,'NA', 'CA', 'LA', 'Compton','{1}','01/01/01' ,2,NOW()),
+('test5', 'testE', 'test5@test.com', 'https://i.imgur.com/MmLQSDV.png', '2 test rd', 22222, 1,'member',false, 'NA', 'CA', 'LA', 'Compton','{1}','01/01/01' ,2, NOW()),
+('test6', 'testF', 'test6@test.com', 'https://i.imgur.com/ZlrcYvd.png', '3 test rd', 33333, 5, 'member', true,'NA', 'CA', 'LA', 'Compton','{1}','01/01/01' ,2, NOW());
 
 INSERT INTO photos (url, user_id) VALUES
 ('https://i.imgur.com/8puTSd9.png', 1),
 ('https://i.imgur.com/MmLQSDV.png', 2),
 ('https://i.imgur.com/ZlrcYvd.png', 3);
+
+INSERT INTO relationships (user_id, partner_id, status) VALUES
+(1, 2, 'pending'),
+(2, 3, 'accepted');
+
+
+INSERT INTO locations (lat, lng) VALUES
+('123.123', '123.123'),
+('456.456', '456.456'),
+('789.789', '789.789');
+
+INSERT INTO board (owner_id, constributors_id, title, description) VALUES
+(1, '{1,2}', 'test 1s board', 'test1 description'),
+(2, '{3,4}', 'test 2s board', 'test2 description'),
+(3, '{5,6}', 'test 3s board', 'test3 description');

@@ -13,7 +13,11 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js",
+    "db:init": "psql -U postgres -f database/schema.sql",
+    "db:seed": "psql -U postgres -f database/seed.sql",
+    "boot": "npm run db:init && npm run db:seed && npm start"
   },
   "repository": {
     "type": "git",
