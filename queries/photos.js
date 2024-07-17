@@ -7,6 +7,7 @@ const getAllPhotos = async () => {
     console.log(error);
   }
 };
+
 const getOnePhoto = async (id) => {
   try {
     return await database.one("SELECT * FROM photos WHERE id = $1", id);
