@@ -39,3 +39,6 @@ const deleteRelationship = async (id) => {
         return null;
     }
 }   
+
+
+module.exports = { getAllRelationships, getOneRelationship, createRelationship, updateRelationship, deleteRelationship };
