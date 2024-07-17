@@ -1,10 +1,10 @@
 const express = require("express");
-const aController = express();
+const photosController = express();
 const { getOnePhoto } = require("../queries/photos");
 const { getAllPhotos } = require("../queries/photos");
 
 // all photos
-aController.get("/", async (req, res) => {
+photosController.get("/", async (req, res) => {
   const { url, user_id } = req.query;
   const photos = await getAllPhotos(url, user_id);
   console.log(photos);
@@ -20,7 +20,7 @@ aController.get("/", async (req, res) => {
 });
 
 // single photo
-aController.get("/:id", async (req, res) => {
+photosController.get("/:id", async (req, res) => {
   const id = req.params.id;
   const singleItem = await getOnePhoto(id);
   if (singleItem) {
@@ -33,4 +33,4 @@ aController.get("/:id", async (req, res) => {
   }
 });
 
-module.exports = aController;
+module.exports = photosController;
