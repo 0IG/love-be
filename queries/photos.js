@@ -1,8 +1,8 @@
 const database = require("../database/databaseConfig");
 
-const getAllPhotos = async () => {
+const getAllPhotos = async (user_id) => {
   try {
-    return await database.any("SELECT * FROM photos");
+    return await database.any("SELECT * FROM photos WHERE user_id = $1", user_id);
   } catch (error) {
     console.log(error);
   }
@@ -53,4 +53,4 @@ const deletePhoto = async (id) => {
 
 }
 
-module.exports = { getAllPhotos, getOnePhoto };
+module.exports = { getAllPhotos, getOnePhoto, createPhoto, updatePhoto, deletePhoto };

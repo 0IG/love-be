@@ -1,6 +1,6 @@
 const express = require("express");
 const photosController = express();
-const { getOnePhoto } = require("../queries/photos");
+const { getAllPhotos, getOnePhoto, createPhoto, updatePhoto, deletePhoto } = require("../queries/photos");
 const { getAllPhotos } = require("../queries/photos");
 
 // all photos
@@ -32,5 +32,47 @@ photosController.get("/:id", async (req, res) => {
     res.status(500).json();
   }
 });
+
+photosController.post("/addPhoto", async (req, res) => {
+  const newPhoto = req.body;
+  const createdPhoto = await createPhoto(newPhoto);
+  if (createdPhoto) {
+    res.json({
+      success: true,
+      payload: createdPhoto,
+    });
+  } else {
+    res.status(500).json();
+  }
+});
+
+photosController.put("/:id", async (req, res) => {
+  const id = req.params.id;
+  const updatedPhoto = await updatePhoto(id, req.body);
+  if (updatedPhoto) {
+    res.json({
+      success: true,
+      payload: updatedPhoto,
+    });
+  } else {
+    res.status(500).json();
+  }
+});
+
+photosController.delete("/:id", async (req, res) => {
+  const id = req.params.id;
+  const deletedPhoto = await deletePhoto(id);
+  if (deletedPhoto) {
+    res.json({
+      success: true,
+      payload: deletedPhoto,
+    });
+  } else {
+    res.status(500).json();
+  }
+})
+
+
+
 
 module.exports = photosController;
