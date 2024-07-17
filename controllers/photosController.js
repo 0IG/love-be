@@ -33,7 +33,7 @@ photosController.get("/:id", async (req, res) => {
   }
 });
 
-photosController.post("/addPhoto", async (req, res) => {
+photosController.post("/", async (req, res) => {
   const newPhoto = req.body;
   const createdPhoto = await createPhoto(newPhoto);
   if (createdPhoto) {
