@@ -1,9 +1,7 @@
 const express = require("express");
 const photosController = express();
 const { getAllPhotos, getOnePhoto, createPhoto, updatePhoto, deletePhoto } = require("../queries/photos");
-const { getAllPhotos } = require("../queries/photos");
 
-// all photos
 photosController.get("/", async (req, res) => {
   const { url, user_id } = req.query;
   const photos = await getAllPhotos(url, user_id);
