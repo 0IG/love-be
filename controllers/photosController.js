@@ -1,7 +1,12 @@
 const express = require("express");
 const photosController = express();
-const { getAllPhotos, getOnePhoto, createPhoto, updatePhoto, deletePhoto } = require("../queries/photos");
-const { getAllPhotos } = require("../queries/photos");
+const {
+  getAllPhotos,
+  getOnePhoto,
+  createPhoto,
+  updatePhoto,
+  deletePhoto,
+} = require("../queries/photos");
 
 // all photos
 photosController.get("/", async (req, res) => {
@@ -70,7 +75,6 @@ photosController.delete("/:id", async (req, res) => {
   } else {
     res.status(500).json();
   }
-})
-
+});
 
 module.exports = photosController;
