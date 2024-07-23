@@ -3,12 +3,12 @@ const cors = require("cors");
 
 const app = express();
 app.use(cors());
-const aController = require("./controllers/aController");
+const photosController = require("./controllers/photosController");
 
 app.get("/", (req, res) => {
   res.send("Hello World :3");
 });
 
-app.use("/photos", aController);
+app.use("/photos", photosController);
 
 module.exports = app;

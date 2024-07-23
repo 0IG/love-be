@@ -1,6 +1,6 @@
 const database = require("../database/databaseConfig");
 
-const getAllPhotos = async () => {
+const getAllPhotos = async (user_id) => {
   try {
     return await database.any("SELECT * FROM photos");
   } catch (error) {
