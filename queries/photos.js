@@ -1,5 +1,5 @@
 const database = require("../database/databaseConfig");
-
+// Create a new query to get all photos
 const getAllPhotos = async (user_id) => {
   try {
     return await database.any("SELECT * FROM photos");
