@@ -42,7 +42,8 @@ boardsController.post("/", async (req, res) => {
       payload: createdBoard,
     });
   } else {
-    res.status(500).json();
+    console.log("something went wrong");
+    res.status(400).json();
   }
 });
 

@@ -19,8 +19,8 @@ const getOneBoard = async (id) => {
 const createBoard = async (board) => {
   try {
     return await db.one(
-      "INSERT INTO board (name, owner_id) VALUES ($1, $2) RETURNING *",
-      [board.name, board.owner_id]
+      "INSERT INTO board (owner_id, constributors_id, title, description) VALUES ($1, $2, $3, $4) RETURNING *",
+      [board.owner_id, board.constributors_id, board.title, board.description]
     );
   } catch (error) {
     return null;
