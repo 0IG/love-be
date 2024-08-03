@@ -2,6 +2,7 @@ const express = require("express");
 const photosController = express();
 const { getAllPhotos, getOnePhoto, createPhoto, updatePhoto, deletePhoto } = require("../queries/photos");
 
+
 photosController.get("/", async (req, res) => {
   const { url, user_id } = req.query;
   const photos = await getAllPhotos(url, user_id);
@@ -68,7 +69,6 @@ photosController.delete("/:id", async (req, res) => {
   } else {
     res.status(500).json();
   }
-})
-
+});
 
 module.exports = photosController;

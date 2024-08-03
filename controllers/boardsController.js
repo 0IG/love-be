@@ -66,6 +66,7 @@ boardsController.delete("/:id", async (req, res) => {
     } else {
         res.status(500).json();
     }
+
 });
 
 module.exports = boardsController;

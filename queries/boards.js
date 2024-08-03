@@ -1,12 +1,13 @@
-const db = require('../database/databaseConfig');
+const db = require("../database/databaseConfig");
 
 const getAllBoards = async () => {
   try {
-    return await db.any('SELECT * FROM board');
+
+    return await db.any('SELECT * FROM 
   } catch (error) {
     console.log(error);
   }
-}
+};
 
 const getOneBoard = async (id) => {
     try {
@@ -40,4 +41,10 @@ const deleteBoard = async (id) => {
     }
 }
 
-module.exports = { getAllBoards, getOneBoard, createBoard, updateBoard, deleteBoard };
+module.exports = {
+  getAllBoards,
+  getOneBoard,
+  createBoard,
+  updateBoard,
+  deleteBoard,
+};

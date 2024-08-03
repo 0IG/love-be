@@ -1,8 +1,8 @@
 const database = require("../database/databaseConfig");
-
+// Create a new query to get all photos
 const getAllPhotos = async (user_id) => {
   try {
-    return await database.any("SELECT * FROM photos WHERE user_id = $1", user_id);
+    return await database.any("SELECT * FROM photos");
   } catch (error) {
     console.log(error);
   }
@@ -15,42 +15,40 @@ const getOnePhoto = async (id) => {
     return null;
   }
 };
-
-const createPhoto = async (photo) => {
+const createPhoto = async (url, user_id) => {
   try {
     return await database.one(
-      "INSERT INTO photos (user_id, url) VALUES ($1, $2) RETURNING *",
-      [photo.user_id, photo.url]
+      "INSERT INTO photos (url, user_id) VALUES ($1, $2) RETURNING *",
+      [url, user_id]
     );
   } catch (error) {
     return null;
   }
+};
 
-}
-
-const updatePhoto = async (id, photo) => {
+const updatePhoto = async (id, url, user_id) => {
   try {
     return await database.one(
-      "UPDATE photos SET user_id = $1, url = $2 WHERE id = $3 RETURNING *",
-      [photo.user_id, photo.url, id]
+      "UPDATE photos SET url = $1, user_id = $2 WHERE id = $3",
+      [url, user_id, id]
     );
   } catch (error) {
     return null;
   }
-
-}
+};
 
 const deletePhoto = async (id) => {
   try {
-    return await database.one(
-      "DELETE FROM photos WHERE id = $1 RETURNING *",
-      id
-    );
+    return await database.one("DELETE FROM photos WHERE id = $1", id);
   } catch (error) {
     return null;
   }
+};
 
-
-}
-
-module.exports = { getAllPhotos, getOnePhoto, createPhoto, updatePhoto, deletePhoto };
+module.exports = {
+  getAllPhotos,
+  getOnePhoto,
+  createPhoto,
+  updatePhoto,
+  deletePhoto,
+};

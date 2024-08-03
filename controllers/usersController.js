@@ -1,5 +1,6 @@
 const express = require("express");
 const usersController = express();
+
 const { getAllUsers, getOneUser, createUser, updateUser, deleteUser } = require("../queries/users");
 
 usersController.get("/", async (req, res) => {
