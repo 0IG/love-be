@@ -8,9 +8,9 @@ const getAllRelationships = async () => {
     }
 }
 
-const getOneRelationship = async (id) => {
+const getOneRelationship = async (user_id) => {
     try {
-        return await db.one("SELECT * FROM relationships WHERE id = $1", id);
+        return await db.one("SELECT * FROM relationships WHERE user_id = $1", user_id);
     } catch (error) {
         return null;
     }
