@@ -1,70 +1,72 @@
-const express = require('express');
+const express = require("express");
 const usersController = express();
-const { getAllUsers, getOneUser, createUser, updateUser, deleteUser } = require('../queries/users');
+const { getAllUsers, getOneUser, createUser, updateUser, deleteUser } = require("../queries/users");
 
-
-const getAllUsers = async (req, res) => {
+usersController.get("/", async (req, res) => {
     const users = await getAllUsers();
+    console.log(users);
+
     if (users) {
         res.json({
             success: true,
-            payload: users
+            payload: users,
         });
     } else {
         res.status(500).json();
     }
-}
+})
 
-const getOneUser = async (req, res) => {
+usersController.get("/:id", async (req, res) => {
     const id = req.params.id;
-    const user = await getOneUser(id);
-    if (user) {
+    const singleItem = await getOneUser(id);
+    if (singleItem) {
         res.json({
             success: true,
-            payload: user
+            payload: singleItem,
         });
     } else {
         res.status(500).json();
     }
-}
+});
 
-const createUser = async (req, res) => {
+usersController.post("/", async (req, res) => {
     const newUser = req.body;
     const createdUser = await createUser(newUser);
     if (createdUser) {
         res.json({
             success: true,
-            payload: createdUser
+            payload: createdUser,
         });
     } else {
         res.status(500).json();
     }
-}
+});
 
-const updateUser = async (req, res) => {
+usersController.put("/:id", async (req, res) => {
     const id = req.params.id;
     const updatedUser = await updateUser(id, req.body);
     if (updatedUser) {
         res.json({
             success: true,
-            payload: updatedUser
+            payload: updatedUser,
         });
     } else {
         res.status(500).json();
     }
-}
+});
 
-const deleteUser = async (req, res) => {
+usersController.delete("/:id", async (req, res) => {
     const id = req.params.id;
     const deletedUser = await deleteUser(id);
     if (deletedUser) {
         res.json({
             success: true,
-            payload: deletedUser
+            payload: deletedUser,
         });
     } else {
         res.status(500).json();
     }
-}
+});
+
 
 module.exports = usersController;
