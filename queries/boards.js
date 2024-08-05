@@ -3,7 +3,7 @@ const db = require("../database/databaseConfig");
 const getAllBoards = async () => {
   try {
 
-    return await db.any('SELECT * FROM 
+    return await db.any('SELECT * FROM board');
   } catch (error) {
     console.log(error);
   }
