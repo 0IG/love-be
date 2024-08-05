@@ -1,7 +1,7 @@
 const express = require("express");
 const usersController = express();
 
-const { getAllUsers, getOneUser, createUser, updateUser, deleteUser } = require("../queries/users");
+const { getAllUsers, getOneUser, getOneByFirebaseId, createUser, updateUser, deleteUser } = require("../queries/users");
 
 usersController.get("/", async (req, res) => {
     const users = await getAllUsers();
@@ -29,6 +29,21 @@ usersController.get("/:id", async (req, res) => {
         res.status(500).json();
     }
 });
+
+usersController.get("/firebase/:id", async (req, res) => {
+    const id = req.params.id;
+    const singleFirebaseUser = await getOneByFirebaseId(id);
+    if (singleFirebaseUser) {
+        res.json({
+            success: true,
+            payload: singleFirebaseUser,
+        });
+    } else {
+        res.status(500).json();
+    }
+});
+
+
 
 usersController.post("/", async (req, res) => {
     const newUser = req.body;
